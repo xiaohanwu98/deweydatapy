@@ -196,7 +196,7 @@ def get_file_list(apikey, product_path, start_page=1, end_page=float('inf'),
 
     return files_df
 
-def read_sample(url, nrows=100):
+def read_sample(url):
     """
     Read sample data into memory from a URL.
 
@@ -214,9 +214,9 @@ def read_sample(url, nrows=100):
     response = requests.get(url)
 
     try:
-        df = pd.read_csv(BytesIO(response.content), compression="gzip", nrows=nrows)
+        df = pd.read_csv(BytesIO(response.content), compression="gzip")
     except gzip.BadGzipFile:  # not gzip file. try normal csv
-        df = pd.read_csv(BytesIO(response.content), nrows=nrows)
+        df = pd.read_csv(BytesIO(response.content))
     except:
         print("Could not read the data. Can only open gzip csv file or csv file.")
 
@@ -348,33 +348,3 @@ def read_local(path, nrows=None):
 
 # Backward compatibility
 read_local_data = read_local
-
-def read_file(url):
-    """
-    Read sample data into memory from a URL.
-
-    :param url: A file URL.
-    :param nrows: Number of rows to read. Default is 100.
-    :return: A DataFrame object contains data.
-    """
-
-    # if(nrows > 1000) {
-    #   print("Warning: set nrows no greater than 1000.");
-    #   nrows = 1000;
-    # }
-
-    # Create a response object from the URL
-    response = requests.get(url)
-
-    try:
-        df = pd.read_csv(BytesIO(response.content), compression="gzip")
-    except gzip.BadGzipFile:  # not gzip file. try normal csv
-        df = pd.read_csv(BytesIO(response.content))
-    except:
-        print("Could not read the data. Can only open gzip csv file or csv file.")
-
-    return (df)
-
-# Backward compatibility
-read_sample_data = read_sample
-
