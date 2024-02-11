@@ -11,8 +11,8 @@ setup(
     author_email='info@deweydata.io',
     description='Dewey Data Inc. Python Library',
     project_urls={
-        'Documentation': 'https://github.com/Dewey-Data/deweydatapy',
-        'Source': 'https://github.com/Dewey-Data/deweydatapy',
+        'Documentation': 'https://github.com/xiaohanwu98/deweydatapy',
+        'Source': 'https://github.com/xiaohanwu98/deweydatapy',
         'Tracker': 'https://community.deweydata.io/c/help/python/43',
     }
 )
